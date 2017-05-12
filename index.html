@@ -4,6 +4,21 @@
   <head>
     <title>groot - Download Instagram images and videos</title>
     <link rel="stylesheet" type="text/css" href="lib/semantic.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
+
+    <style>
+      body {
+        background-color: #f2f2f2;
+      }
+
+      p.heading {
+        color: #555;
+        font-family: 'Lato', sans-serif;
+        font-weight: 100;
+        text-align: center;
+        font-size: 2em;
+      }
+    </style>
   </head>
 
   <body>
@@ -12,7 +27,20 @@
       <div class="three column row">
         <div class="three wide column"></div>
         <div class="ten wide column">
-          <h1 class="ui header aligned center">Hi there</h1>
+          <div class="ui hidden divider"></div>
+          <div class="ui hidden divider"></div>
+          <div class="ui hidden divider"></div>
+          <div class="aligned center">
+            <img src="logo.png" class="ui centered tiny image">
+            <div class="ui hidden divider"></div>
+            <p class="ui aligned center heading">Download images and videos from instagram</p>
+
+            <form id="form" class="ui massive form">
+              <div class="field">
+                <input type="text" placeholder="https://instagram/p/e0GTd7O">
+              </div>
+            </form>
+          </div>
         </div>
         <div class="three wide column"></div>
       </div>

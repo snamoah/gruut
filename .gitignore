@@ -50,3 +50,5 @@ Thumbs.db
 /build
 
 *.pem
+
+.lambda/.build/

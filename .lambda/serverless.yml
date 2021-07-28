@@ -1,0 +1,17 @@
+service: groot-serverless
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  download:
+    handler: functions/download.handler
+    events:
+      - http:
+          path: download
+          method: get

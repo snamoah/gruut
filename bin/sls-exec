@@ -1,10 +1,5 @@
 #!/bin/bash
 
-args=("$@")
-
-echo $@
-
-
 # Change directory to lambda
 cd .lambda
 

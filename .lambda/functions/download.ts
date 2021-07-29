@@ -39,7 +39,6 @@ export const handler = async ({ body: bodyString }) => {
 
   try {
     const { url } = await validateBody(bodyString)
-    console.log('===> validation worked?', url)
     const fetchResult = await fetch(url)
     const html = await fetchResult.text()
     const sharedData = getSharedData(html)

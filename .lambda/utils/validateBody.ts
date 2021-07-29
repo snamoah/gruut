@@ -8,8 +8,7 @@ const schema = yup.object().shape({
   url: yup
     .string()
     .trim()
-    .url()
-    .required()
+    .required('Url is required')
     .matches(/^https:\/\/(www.)?instagram.com/, 'Url must be an Instagram url'),
 })
 

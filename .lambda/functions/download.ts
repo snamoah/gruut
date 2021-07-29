@@ -1,19 +1,9 @@
 import fetch from 'node-fetch'
 import { pick } from 'lodash'
 import * as cheerio from 'cheerio'
+import { send, sendError, validateBody } from '../utils'
 
 const PROFILE_FIELDS = ['is_private', 'profile_pic_url', 'username']
-
-interface RequestBody {
-  url: string
-}
-
-interface Response {}
-
-const send = (json) => ({
-  statusCode: 200,
-  body: JSON.stringify(json),
-})
 
 const getSharedData = (html: string): Record<string, any> | null => {
   const $ = cheerio.load(html)
@@ -44,17 +34,12 @@ const getSharedData = (html: string): Record<string, any> | null => {
   }
 }
 
-export const handler = async ({ body }) => {
-  console.log('==> event', body)
-
+export const handler = async ({ body: bodyString }) => {
   let response = {}
-  // const url = 'https://www.instagram.com/tv/CR4I0I_o9gR/?utm_medium=share_sheet'
-  // const url = 'https://www.instagram.com/p/CR4lLe3tEwK/?utm_medium=share_sheet'
-  // const url = 'https://www.instagram.com/reel/CR2jz2MKtJn/?utm_medium=share_sheet'
-  const url = 'https://www.instagram.com/p/CR2gbSipLr6/?utm_medium=share_sheet'
-  // const url = 'https://www.instagram.com/p/Bz82tWiB1qyWpG2KESZjYRNLDntFiMZUqH1G7A0/?utm_medium=copy_link'
 
   try {
+    const { url } = await validateBody(bodyString)
+    console.log('===> validation worked?', url)
     const fetchResult = await fetch(url)
     const html = await fetchResult.text()
     const sharedData = getSharedData(html)
@@ -74,7 +59,7 @@ export const handler = async ({ body }) => {
       response = processPost(shortcode_media)
     }
   } catch (error) {
-    console.error('====> error', error)
+    return sendError(400, error.message)
   }
 
   return send(response)

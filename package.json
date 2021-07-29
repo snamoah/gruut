@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx,.js",
     "prepare": "husky install",
-    "api:dev": "./bin/sls-exec offline"
+    "api:dev": "./bin/sls-exec offline",
+    "test:api": "jest"
   },
   "dependencies": {
     "cheerio": "0.22.0",
+    "jest": "^27.0.6",
     "lodash": "^4.17.21",
     "next": "11.0.1",
     "node-fetch": "^2.6.1",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.30",
+    "@types/jest": "^26.0.24",
     "@types/lodash": "^4.14.171",
     "@types/node-fetch": "^2.5.12",
     "@types/react": "17.0.15",

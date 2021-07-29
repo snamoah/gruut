@@ -7,6 +7,7 @@ provider:
 
 plugins:
   - serverless-plugin-typescript
+  - serverless-offline
 
 functions:
   download:
@@ -15,3 +16,8 @@ functions:
       - http:
           path: /api
           method: post
+
+
+custom:
+  serverless-offline:
+    httpPort: 5000

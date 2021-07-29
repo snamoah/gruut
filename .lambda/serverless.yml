@@ -13,5 +13,5 @@ functions:
     handler: functions/download.handler
     events:
       - http:
-          path: download
-          method: get
+          path: /api
+          method: post

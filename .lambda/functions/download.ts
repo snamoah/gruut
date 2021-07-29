@@ -1,7 +1,8 @@
 import fetch from 'node-fetch'
 import { pick } from 'lodash'
 import * as cheerio from 'cheerio'
-import { send, sendError, validateBody } from '../utils'
+import { SUPPORTED_POST_TYPES } from '../lib/constants'
+import { send, sendError, validateBody, verifyUrlType, grabGraphqlData } from '../lib'
 
 const PROFILE_FIELDS = ['is_private', 'profile_pic_url', 'username']
 
@@ -35,10 +36,18 @@ const getSharedData = (html: string): Record<string, any> | null => {
 }
 
 export const handler = async ({ body: bodyString }) => {
-  let response = {}
+  let response
 
   try {
     const { url } = await validateBody(bodyString)
+
+    const urlType = verifyUrlType(url)
+
+    const isSupposedPostType = SUPPORTED_POST_TYPES.includes(urlType)
+    if (!isSupposedPostType) {
+      throw new Error('Instagram link not supported')
+    }
+
     const fetchResult = await fetch(url)
     const html = await fetchResult.text()
     const sharedData = getSharedData(html)
@@ -48,13 +57,13 @@ export const handler = async ({ body: bodyString }) => {
     }
 
     const { entry_data } = sharedData
-    const isPrivate = isPrivateAccount(sharedData)
+    const isPrivate = isPrivateAccount(entry_data)
 
     if (isPrivate) {
-      const { user } = grabGraphqlData('ProfilePage', entry_data)
+      const { user } = grabGraphqlData('profile', entry_data)
       response = pick(user, PROFILE_FIELDS)
     } else {
-      const { shortcode_media } = grabGraphqlData('PostPage', entry_data)
+      const { shortcode_media } = grabGraphqlData(urlType, entry_data)
       response = processPost(shortcode_media)
     }
   } catch (error) {
@@ -64,12 +73,8 @@ export const handler = async ({ body: bodyString }) => {
   return send(response)
 }
 
-const isPrivateAccount = (sharedData: Record<string, any>) =>
-  Object.keys(sharedData.entry_data).includes('ProfilePage')
-
-const grabGraphqlData = (key: string, data: Record<string, any>) => {
-  return data[key] && data[key][0]?.graphql
-}
+const isPrivateAccount = (entryData: Record<string, any>) =>
+  Object.keys(entryData).includes('ProfilePage')
 
 enum ShortCodeMedia {
   IMAGE = 'GraphImage',

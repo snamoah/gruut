@@ -2,7 +2,7 @@ import { validateBody } from '..'
 
 const instagramUrl = 'https://www.instagram.com/p/CR2gbSipLr6/?utm_medium=share_sheet'
 
-describe('Validate body', () => {
+describe('validateBody()', () => {
   test('should return body', async () => {
     const body = await validateBody(`{"url": "${instagramUrl}"}`)
     expect(body).toEqual({ url: instagramUrl })

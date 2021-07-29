@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn client:dev && yarn api:dev",
+    "build": "yarn client:build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx,.js",
     "prepare": "husky install",
+    "client:build": "next build",
+    "client:start": "next start",
+    "client:dev": "next dev",
     "api:dev": "./bin/sls-exec offline",
     "test:api": "jest"
   },

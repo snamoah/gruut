@@ -12,6 +12,7 @@
     "client:start": "next start",
     "client:dev": "next dev",
     "api:dev": "./bin/sls-exec offline",
+    "test": "yarn test:api",
     "test:api": "jest"
   },
   "dependencies": {

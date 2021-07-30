@@ -93,7 +93,7 @@ const Home = () => {
           </span>{' '}
           by{' '}
           <b>
-            <a href="" rel="noreferrer" target="_blank">
+            <a href="https://snamoah.dev" rel="noreferrer" target="_blank">
               @snamoah
             </a>
           </b>

@@ -1,4 +1,5 @@
 import Logo from '../components/Logo'
+import InputBox from '../components/InputBox'
 import styles from '../styles/index.module.css'
 import Eye from '../components/illustrations/Eye'
 import Hand from '../components/illustrations/Hand'
@@ -6,6 +7,10 @@ import GiftBox from '../components/illustrations/GiftBox'
 import WomanWithPhone from '../components/illustrations/WomanWithMobile'
 
 const Home = () => {
+  const onSubmit = (url: string) => {
+    console.log('===> url submitted', url)
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -26,7 +31,9 @@ const Home = () => {
               <WomanWithPhone />
             </figure>
           </section>
-          <section>{/* input search bar */}</section>
+          <section className={styles.inputBox}>
+            <InputBox onSubmit={onSubmit} />
+          </section>
           <section className={styles.benefits}>
             <header>
               <h2>Benefits</h2>

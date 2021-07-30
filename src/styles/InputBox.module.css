@@ -1,0 +1,69 @@
+.form {
+  position: relative;
+  border: 1px solid #5c677d;
+  border-radius: 5px;
+  padding: 3em 1.5em 1.2em;
+}
+
+.form label {
+  position: absolute;
+  top: 1.5em;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  transition: top 0.1s ease;
+  -moz-transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+}
+
+.form p {
+  display: block;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.form span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form input {
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  font-size: 36px;
+  font-weight: 900;
+  display: block;
+  width: 100%;
+}
+
+.form input:focus {
+  outline: none;
+}
+
+.form input:focus ~ label,
+.form input:valid ~ label {
+  top: 1.2em;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+
+.form input:-internal-autofill-selected,
+.form input:-webkit-autofill,
+.form input:-webkit-autofill:hover,
+.form input:-webkit-autofill:focus,
+.form input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px white inset !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.tip {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tip b {
+  margin: 0 0.4em;
+}

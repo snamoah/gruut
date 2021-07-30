@@ -6,10 +6,6 @@
   margin-top: 2em;
 }
 
-.main section:not(:first-of-type) {
-  margin-top: 10em;
-}
-
 .aboveTheFold {
   margin-top: 0;
   display: flex;
@@ -35,8 +31,20 @@
   margin: 0.5em 0;
 }
 
+.benefits {
+  margin-top: 10em;
+}
+
 .benefits > header {
   text-align: center;
+}
+.benefits > header h2 {
+  margin-bottom: 0.3em;
+}
+
+.benefits > header p {
+  margin-top: 0;
+  margin-bottom: 2em;
 }
 
 .benefits > div {
@@ -53,8 +61,13 @@
   margin: 1em;
 }
 
+.inputBox {
+  margin-top: 0em;
+}
+
 .howItWorks > div {
   display: flex;
+  margin-top: 10em;
 }
 
 .howItWorks > div > div {

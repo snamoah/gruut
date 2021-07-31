@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - .lambda/**
+      - lambda_deployment.yml
 
 jobs:
   test:

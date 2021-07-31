@@ -6,11 +6,13 @@ import Eye from '../components/illustrations/Eye'
 import Hand from '../components/illustrations/Hand'
 import GiftBox from '../components/illustrations/GiftBox'
 import DownloadModal from '../components/modals/DownloadModal'
+import PrivateAccountModal from '../components/modals/PrivateAccountModal'
 import WomanWithPhone from '../components/illustrations/WomanWithMobile'
 
 const Home = () => {
   const [submitting, setSubmitting] = useState(false)
   const [downloadModalOpen, setDownloadModalOpen] = useState(false)
+  const [privateAccountModalOpen, setPrivateAccountModalOpen] = useState(false)
   const [data, setData] = useState<Record<string, any>>({})
 
   const closeDownloadModal = () => {
@@ -33,8 +35,13 @@ const Home = () => {
       }
 
       setData(data)
-      setDownloadModalOpen(true)
+      if (data.is_private) {
+        setPrivateAccountModalOpen(true)
+      } else {
+        setDownloadModalOpen(true)
+      }
     } catch (error) {
+      console.log('===>', error.message)
     } finally {
       setSubmitting(false)
     }
@@ -141,6 +148,12 @@ const Home = () => {
         username={data.username}
         profileUrl={data.profile_pic_url}
         posts={data.posts}
+      />
+      <PrivateAccountModal
+        open={privateAccountModalOpen}
+        onClose={() => setPrivateAccountModalOpen(false)}
+        username={data.username}
+        profileUrl={data.profile_pic_url}
       />
     </>
   )

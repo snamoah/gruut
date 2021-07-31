@@ -50,4 +50,4 @@ jobs:
         run: yarn install
 
       - name: Deploy Labmda
-        run: .bin/sls-exec deploy --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: yarn api:deploy --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}

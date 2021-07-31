@@ -5,13 +5,13 @@ provider:
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
 
-package:
-  patterns:
-    - '!node_modules/**'
-    - 'node_modules/node-fetch/**'
-    - 'node_modules/lodash/**'
-    - 'node_modules/cheerio/**'
-    - 'node_modules/yup/**'
+# package:
+#   patterns:
+#     - '!node_modules/**'
+#     - 'node_modules/node-fetch/**'
+#     - 'node_modules/lodash/**'
+#     - 'node_modules/cheerio/**'
+#     - 'node_modules/yup/**'
 
 plugins:
   - serverless-plugin-typescript

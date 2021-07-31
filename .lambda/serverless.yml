@@ -1,4 +1,4 @@
-service: groot-serverless
+service: gruut-serverless
 
 provider:
   name: aws
@@ -16,7 +16,7 @@ functions:
       - http:
           path: /api
           method: post
-
+          cors: true
 
 custom:
   serverless-offline:

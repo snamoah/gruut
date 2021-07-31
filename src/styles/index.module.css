@@ -62,7 +62,9 @@
 }
 
 .inputBox {
-  margin-top: 0em;
+  margin-top: 3em;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .howItWorks > div {

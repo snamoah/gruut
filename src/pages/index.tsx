@@ -5,10 +5,27 @@ import Eye from '../components/illustrations/Eye'
 import Hand from '../components/illustrations/Hand'
 import GiftBox from '../components/illustrations/GiftBox'
 import WomanWithPhone from '../components/illustrations/WomanWithMobile'
+import { useState } from 'react'
 
 const Home = () => {
-  const onSubmit = (url: string) => {
+  const [submitting, setSubmitting] = useState(false)
+  const onSubmit = async (url: string) => {
     console.log('===> url submitted', url)
+    setSubmitting(true)
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
+        method: 'POST',
+        body: JSON.stringify({ url }),
+      })
+      const { data, error } = await response.json()
+
+      if (error) {
+        throw new Error(error)
+      }
+    } catch (error) {
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -32,7 +49,7 @@ const Home = () => {
             </figure>
           </section>
           <section className={styles.inputBox}>
-            <InputBox onSubmit={onSubmit} />
+            <InputBox loading={submitting} onSubmit={onSubmit} />
           </section>
           <section className={styles.benefits}>
             <header>

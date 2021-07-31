@@ -5,13 +5,14 @@ import Verified from '../components/icons/Verified'
 import { cleanUrl, verifyUrlType } from '../utils/url'
 import { PostMeta } from '../utils/constants'
 import CrossCircle from './icons/CrossCircle'
+import Loader from './icons/Loader'
 
 interface InputBoxProps {
   loading?: boolean
   onSubmit: (url: string) => void
 }
 
-const InputBox = ({ onSubmit }: InputBoxProps) => {
+const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [fullUrl, setFullUrl] = useState('')
   const [value, setValue] = useState('')
@@ -30,6 +31,7 @@ const InputBox = ({ onSubmit }: InputBoxProps) => {
        */
       setError('')
       setPostTypeName('')
+      setFullUrl('')
     }
   }
 
@@ -56,25 +58,32 @@ const InputBox = ({ onSubmit }: InputBoxProps) => {
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          ref={inputRef}
-          id="inputBox"
-          type="text"
-          value={value}
-          spellCheck={false}
-          onChange={onChange}
-          required
-        />
-        <label htmlFor="inputBox">Paste Instagram link</label>
-        <p>
-          <span>
-            {postTypeName || error} <span>{renderCheck()}</span>
-          </span>
-        </p>
+        <div className={styles.field}>
+          <input
+            ref={inputRef}
+            id="inputBox"
+            type="text"
+            value={value}
+            spellCheck={false}
+            onChange={onChange}
+            required
+          />
+          <label htmlFor="inputBox">Paste Instagram link</label>
+          {loading && (
+            <figure>
+              <Loader />
+            </figure>
+          )}
+        </div>
+        <div className={styles.postType}>
+          {postTypeName || error} <figure>{renderCheck()}</figure>
+        </div>
       </form>
-      <p className={styles.tip}>
-        + Press <b>Enter</b> to download
-      </p>
+      {!error && (
+        <p className={styles.tip}>
+          + Press <b>Enter</b> to download
+        </p>
+      )}
     </>
   )
 }

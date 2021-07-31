@@ -30,9 +30,16 @@ package:
     - 'node_modules/inherits/**'
     - 'node_modules/domelementtype/**'
     - 'node_modules/domhandler/**'
+    - 'node_modules/nanoclone/**'
+    - 'node_modules/lodash-es/**'
     - 'node_modules/domutils/**'
     - 'node_modules/entities/**'
+    - 'node_modules/nth-check/**'
+    - 'node_modules/boolbase/**'
+    - 'node_modules/css-what/**'
     - 'node_modules/readable-stream/**'
+    - 'node_modules/property-expr/**'
+    - 'node_modules/toposort/**'
     - 'node_modules/yup/**'
 
 plugins:

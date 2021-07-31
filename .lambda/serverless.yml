@@ -5,13 +5,29 @@ provider:
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
 
-# package:
-#   patterns:
-#     - '!node_modules/**'
-#     - 'node_modules/node-fetch/**'
-#     - 'node_modules/lodash/**'
-#     - 'node_modules/cheerio/**'
-#     - 'node_modules/yup/**'
+package:
+  patterns:
+    - '!node_modules/**'
+    - 'node_modules/node-fetch/**'
+    - 'node_modules/lodash/**'
+    - 'node_modules/cheerio/**'
+    - 'node_modules/css-select/**'
+    - 'node_modules/dom-serializer/**'
+    - 'node_modules/entities/**'
+    - 'node_modules/htmlparser2/**'
+    - 'node_modules/lodash.assignin/**'
+    - 'node_modules/lodash.bind/**'
+    - 'node_modules/lodash.defaults/**'
+    - 'node_modules/lodash.filter/**'
+    - 'node_modules/lodash.flatten/**'
+    - 'node_modules/lodash.foreach/**'
+    - 'node_modules/lodash.map/**'
+    - 'node_modules/lodash.merge/**'
+    - 'node_modules/lodash.pick/**'
+    - 'node_modules/lodash.reduce/**'
+    - 'node_modules/lodash.reject/**'
+    - 'node_modules/lodash.some/**'
+    - 'node_modules/yup/**'
 
 plugins:
   - serverless-plugin-typescript

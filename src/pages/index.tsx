@@ -1,14 +1,21 @@
+import { useState } from 'react'
 import Logo from '../components/Logo'
 import InputBox from '../components/InputBox'
 import styles from '../styles/index.module.css'
 import Eye from '../components/illustrations/Eye'
 import Hand from '../components/illustrations/Hand'
 import GiftBox from '../components/illustrations/GiftBox'
+import DownloadModal from '../components/modals/DownloadModal'
 import WomanWithPhone from '../components/illustrations/WomanWithMobile'
-import { useState } from 'react'
 
 const Home = () => {
   const [submitting, setSubmitting] = useState(false)
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false)
+  const [data, setData] = useState<Record<string, any>>({})
+
+  const closeDownloadModal = () => {
+    setDownloadModalOpen(false)
+  }
   const onSubmit = async (url: string) => {
     console.log('===> url submitted', url)
     setSubmitting(true)
@@ -19,9 +26,14 @@ const Home = () => {
       })
       const { data, error } = await response.json()
 
+      console.log('===> data', data)
+
       if (error) {
         throw new Error(error)
       }
+
+      setData(data)
+      setDownloadModalOpen(true)
     } catch (error) {
     } finally {
       setSubmitting(false)
@@ -123,6 +135,13 @@ const Home = () => {
           </b>
         </p>
       </footer>
+      <DownloadModal
+        open={downloadModalOpen}
+        onClose={closeDownloadModal}
+        username={data.username}
+        profileUrl={data.profile_pic_url}
+        posts={data.posts}
+      />
     </>
   )
 }

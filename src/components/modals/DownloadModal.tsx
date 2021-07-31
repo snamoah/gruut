@@ -3,6 +3,7 @@ import 'react-responsive-modal/styles.css'
 import Image from 'next/image'
 import { saveAs } from 'file-saver'
 import { Modal } from 'react-responsive-modal'
+import styles from '../../styles/DownloadModal.module.css'
 
 interface DownloadModalProps {
   posts: any[]
@@ -25,27 +26,38 @@ const DownloadModal = ({
     saveAs(url)
   }
   return (
-    <Modal open={open} onClose={onClose} showCloseIcon={false} center>
+    <Modal
+      open={open}
+      onClose={onClose}
+      showCloseIcon={false}
+      classNames={{
+        modal: styles.modal,
+        overlay: styles.overlay,
+      }}
+      center
+    >
       <div>
-        <div>
+        <section className={styles.preview}>
           {posts &&
-            posts.map((post, key) =>
-              post.is_video ? (
-                <video key={key} src={post.video_url} />
-              ) : (
-                <Image key={key} src={post.display_url} />
-              ),
+            posts.map(
+              (post, key) =>
+                //   post.is_video ? (
+                //     <video key={key} src={post.video_url} />
+                //   ) : (
+                //     <Image key={key} src={post.display_url} layout="fill" />
+                //   ),
+                null,
             )}
-        </div>
-        <div>
+        </section>
+        <section className={styles.action}>
           <header>
-            <Image src={profileUrl as any} layout="fixed" />
+            {/* <Image src={profileUrl as any} layout="fill" /> */}
             <span>@{username}</span>
           </header>
           <div>
             <button onClick={saveFile}>Download</button>
           </div>
-        </div>
+        </section>
       </div>
     </Modal>
   )

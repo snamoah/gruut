@@ -34,7 +34,7 @@ export const Extractor = {
   },
   profile: {
     node: 'ProfilePage',
-    fields: ['user'],
+    fields: ['graphql'],
   },
 }
 

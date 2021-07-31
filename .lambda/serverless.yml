@@ -27,6 +27,12 @@ package:
     - 'node_modules/lodash.reduce/**'
     - 'node_modules/lodash.reject/**'
     - 'node_modules/lodash.some/**'
+    - 'node_modules/inherits/**'
+    - 'node_modules/domelementtype/**'
+    - 'node_modules/domhandler/**'
+    - 'node_modules/domutils/**'
+    - 'node_modules/entities/**'
+    - 'node_modules/readable-stream/**'
     - 'node_modules/yup/**'
 
 plugins:

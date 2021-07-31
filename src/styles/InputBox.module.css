@@ -10,7 +10,7 @@
   top: 1.5em;
   font-weight: 900;
   font-size: 30px;
-  color: rgba(0, 0, 0, 0.4);
+  color: #000;
   pointer-events: none;
   transition: top 0.1s ease;
   -moz-transition: top 0.1s ease;

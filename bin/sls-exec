@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# temporarily
+cp -rf node_modules .lambda
+
 # Change directory to lambda
 cd .lambda
 

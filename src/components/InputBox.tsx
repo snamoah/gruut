@@ -63,6 +63,8 @@ const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
             ref={inputRef}
             id="inputBox"
             type="text"
+            autoComplete="off"
+            autoCorrect="off"
             value={value}
             spellCheck={false}
             onChange={onChange}

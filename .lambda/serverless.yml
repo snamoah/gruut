@@ -1,0 +1,31 @@
+service: gruut-serverless
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - 'node_modules/node-fetch/**'
+    - 'node_modules/lodash/**'
+    - 'node_modules/cheerio/**'
+    - 'node_modules/yup/**'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+functions:
+  download:
+    handler: functions/download.handler
+    events:
+      - http:
+          path: /api
+          method: post
+          cors: true
+
+custom:
+  serverless-offline:
+    httpPort: 5000

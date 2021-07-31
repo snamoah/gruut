@@ -29,9 +29,27 @@ npm-debug.log
 
 .DS_Store*
 ehthumbs.db
-Icon?
 Thumbs.db
 .AppleDouble
 .LSOverride
 .Spotlight-V100
 .Trashes
+
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+*.pem
+
+.lambda/.build/
+
+.serverless/

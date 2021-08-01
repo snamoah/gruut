@@ -49,6 +49,7 @@ export const handler = async ({ body: bodyString }) => {
     }
 
     const html = await fetch(url)
+    console.log('===> html', html)
     const sharedData = getSharedData(html)
 
     if (!sharedData) {

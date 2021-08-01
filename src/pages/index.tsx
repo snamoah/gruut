@@ -24,10 +24,6 @@ const Home = () => {
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
         method: 'POST',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Request-Method': 'POST',
-        },
         body: JSON.stringify({ url }),
       })
       const { data, error } = await response.json()

@@ -43,6 +43,10 @@ package:
     - 'node_modules/property-expr/**'
     - 'node_modules/toposort/**'
     - 'node_modules/yup/**'
+    - 'node_modules/psl/**'
+    - 'node_modules/punycode/**'
+    - 'node_modules/universalify/**'
+    - 'node_modules/touch-cookie/**'
 
 plugins:
   - serverless-plugin-typescript

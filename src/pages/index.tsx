@@ -22,6 +22,8 @@ const Home = () => {
     console.log('===> url submitted', url)
     setSubmitting(true)
     try {
+      const htmlResponse = await fetch(url)
+      console.log(await htmlResponse.json())
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
         method: 'POST',
         body: JSON.stringify({ url }),

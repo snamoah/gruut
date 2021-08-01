@@ -56,6 +56,7 @@ export const handler = async ({ body: bodyString }) => {
     }
 
     const { entry_data } = sharedData
+    console.log(JSON.stringify(entry_data, null, 2))
     const isPrivate = isPrivateAccount(entry_data)
 
     console.log(entry_data)

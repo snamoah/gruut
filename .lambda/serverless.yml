@@ -3,7 +3,7 @@ service: gruut-serverless
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-central-1
+  region: us-east-1
   lambdaHashingVersion: 20201221
 
 package:

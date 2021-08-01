@@ -59,7 +59,6 @@ export const handler = async ({ body: bodyString }) => {
     console.log(JSON.stringify(entry_data, null, 2))
     const isPrivate = isPrivateAccount(entry_data)
 
-    console.log(entry_data)
     if (isPrivate) {
       const { user } = grabGraphqlData('profile', entry_data)
       response = pick(user, PROFILE_FIELDS)

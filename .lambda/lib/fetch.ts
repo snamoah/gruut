@@ -1,6 +1,10 @@
 import Axios from 'axios'
+import tough from 'tough-cookie'
+import axiosCookieJarSupport from 'axios-cookiejar-support'
 
 const axios = Axios.create()
+
+axiosCookieJarSupport(axios)
 
 axios.defaults.headers['user-agent'] = axios.defaults.headers['accept-language'] =
   'en-US,en;q=0.9'
@@ -20,6 +24,7 @@ axios.defaults.headers['accept-encoding'] = 'gzip, deflate, br'
 axios.defaults.headers['accept'] =
   'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 axios.defaults.withCredentials = true
+axios.defaults.jar = new tough.CookieJar()
 
 const fetch = async (url: string) => {
   const response = await axios.get(url)

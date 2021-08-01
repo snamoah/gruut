@@ -1,6 +1,6 @@
-import fetch from 'node-fetch'
 import { pick } from 'lodash'
 import * as cheerio from 'cheerio'
+import fetch from '../lib/fetch'
 import { SUPPORTED_POST_TYPES } from '../lib/constants'
 import { send, sendError, validateBody, verifyUrlType, grabGraphqlData } from '../lib'
 
@@ -48,8 +48,7 @@ export const handler = async ({ body: bodyString }) => {
       throw new Error('Instagram link not supported')
     }
 
-    const fetchResult = await fetch(url)
-    const html = await fetchResult.text()
+    const html = await fetch(url)
     const sharedData = getSharedData(html)
 
     if (!sharedData) {

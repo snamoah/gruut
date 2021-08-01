@@ -9,7 +9,8 @@ provider:
 package:
   patterns:
     - '!node_modules/**'
-    - 'node_modules/node-fetch/**'
+    - 'node_modules/axios/**'
+    - 'node_modules/follow-redirects/**'
     - 'node_modules/lodash/**'
     - 'node_modules/cheerio/**'
     - 'node_modules/css-select/**'

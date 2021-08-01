@@ -55,10 +55,10 @@ package:
     - 'node_modules/end-of-stream/**'
     - 'node_modules/fs-constants/**'
     - 'node_modules/readable-stream/**'
-    # - 'node_modules/psl/**'
-    # - 'node_modules/punycode/**'
-    # - 'node_modules/universalify/**'
-    # - 'node_modules/touch-cookie/**'
+    - 'node_modules/psl/**'
+    - 'node_modules/punycode/**'
+    - 'node_modules/universalify/**'
+    - 'node_modules/touch-cookie/**'
 
 plugins:
   - serverless-plugin-typescript

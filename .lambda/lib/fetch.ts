@@ -1,4 +1,4 @@
-import chromium from 'chrome-aws-lambda'
+const chromium = require('chrome-aws-lambda')
 
 // import Axios from 'axios'
 // import tough from 'tough-cookie'
@@ -31,11 +31,12 @@ import chromium from 'chrome-aws-lambda'
 const fetch = async (url: string) => {
   // const response = await axios.get(url)
   // return response.data
+  console.log(chromium)
   const browser = await chromium.puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
-    headless: chromium.headless,
+    headless: true,
     ignoreHTTPSErrors: true,
   })
 

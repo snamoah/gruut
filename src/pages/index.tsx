@@ -128,7 +128,7 @@ const Home = () => {
       </div>
       <footer className={styles.footer}>
         <p className={styles.copyright}>
-          ©2021. Built with{' '}
+          Built with{' '}
           <span role="img" aria-label="Red Heart">
             ❤️
           </span>{' '}

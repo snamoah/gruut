@@ -39,19 +39,17 @@ const DownloadModal = ({
       <div>
         <section className={styles.preview}>
           {posts &&
-            posts.map(
-              (post, key) =>
-                //   post.is_video ? (
-                //     <video key={key} src={post.video_url} />
-                //   ) : (
-                //     <Image key={key} src={post.display_url} layout="fill" />
-                //   ),
-                null,
+            posts.map((post, key) =>
+              post.is_video ? (
+                <video key={key} src={post.video_url} />
+              ) : (
+                <Image key={key} src={post.display_url} layout="fill" />
+              ),
             )}
         </section>
         <section className={styles.action}>
           <header>
-            {/* <Image src={profileUrl as any} layout="fill" /> */}
+            <Image src={profileUrl as any} layout="fill" />
             <span>@{username}</span>
           </header>
           <div>

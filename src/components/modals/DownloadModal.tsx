@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { saveAs } from 'file-saver'
 import { Modal } from 'react-responsive-modal'
 import styles from '../../styles/DownloadModal.module.css'
+import { proxifyUrl } from '../../utils/url'
 
 interface DownloadModalProps {
   posts: any[]
@@ -22,7 +23,7 @@ const DownloadModal = ({
 }: DownloadModalProps) => {
   const saveFile = () => {
     const [post] = posts
-    const url = post.is_video ? post.video_url : post.display_url
+    const url = proxifyUrl(post.is_video ? post.video_url : post.display_url)
     saveAs(url)
   }
   return (
@@ -41,15 +42,19 @@ const DownloadModal = ({
           {posts &&
             posts.map((post, key) =>
               post.is_video ? (
-                <video key={key} src={post.video_url} />
+                <video key={key} src={proxifyUrl(post.video_url)} />
               ) : (
-                <Image key={key} src={post.display_url} layout="fill" />
+                <Image
+                  key={key}
+                  src={proxifyUrl(post.display_url) as any}
+                  objectFit="scale-down"
+                />
               ),
             )}
         </section>
         <section className={styles.action}>
           <header>
-            <Image src={profileUrl as any} layout="fill" />
+            <Image src={proxifyUrl(profileUrl)} layout="fixed" width={50} height={50} />
             <span>@{username}</span>
           </header>
           <div>

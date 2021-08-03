@@ -5,9 +5,10 @@ import Image from 'next/image'
 import { saveAs } from 'file-saver'
 import { Modal } from 'react-responsive-modal'
 import styles from '../../styles/DownloadModal.module.css'
-import { proxifyUrl } from '../../utils/url'
+import { cdn } from '../../utils/url'
 import RightArrow from '../icons/RightArrow'
 import LeftArrow from '../icons/LeftArrow'
+import { saveMultipleFiles } from '../../utils/files'
 
 interface DownloadModalProps {
   posts: any[]
@@ -25,11 +26,7 @@ const DownloadModal = ({
   profileUrl,
 }: DownloadModalProps) => {
   const [slideIndex, setSlideIndex] = useState(0)
-  const saveFile = () => {
-    const [post] = posts
-    const url = proxifyUrl(post.is_video ? post.video_url : post.display_url)
-    saveAs(url)
-  }
+  const [loading, setLoading] = useState(false)
 
   const post = posts[slideIndex]
 
@@ -39,6 +36,21 @@ const DownloadModal = ({
 
   const onNext = () => setSlideIndex(slideIndex + 1)
   const onPrevious = () => setSlideIndex(slideIndex - 1)
+
+  const save = async () => {
+    const urls = posts.map((post) => (post.is_video ? post.video_url : post.display_url))
+    setLoading(true)
+
+    try {
+      if (!isCarousel) {
+        saveAs(cdn(urls[0]))
+      } else {
+        await saveMultipleFiles(urls, username)
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <Modal
@@ -55,11 +67,11 @@ const DownloadModal = ({
         <section className={styles.preview}>
           <div>
             {post.is_video ? (
-              <video controls src={proxifyUrl(post.video_url)} />
+              <video controls src={cdn(post.video_url)} />
             ) : (
               <Image
                 unoptimized={true}
-                src={proxifyUrl(post.display_url) as any}
+                src={cdn(post.display_url) as any}
                 objectFit="contain"
                 layout="fill"
               />
@@ -84,7 +96,7 @@ const DownloadModal = ({
           <header>
             <Image
               unoptimized={true}
-              src={proxifyUrl(profileUrl)}
+              src={cdn(profileUrl)}
               layout="fixed"
               width={40}
               height={40}
@@ -92,7 +104,9 @@ const DownloadModal = ({
             <span>@{username}</span>
           </header>
           <div>
-            <button onClick={saveFile}>Download</button>
+            <button disabled={loading} onClick={save}>
+              Download{isCarousel && ' all'}
+            </button>
           </div>
         </section>
       </div>

@@ -39,5 +39,5 @@ export const cleanUrl = (url: string) => {
   return `instagram.com${pathname}`
 }
 
-export const proxifyUrl = (url: string) =>
+export const cdn = (url: string) =>
   `https://fetch-instagram-media.gruut.workers.dev/${url}`

@@ -5380,7 +5380,7 @@ jsonwebtoken@^8.5.1:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
 
-jszip@^3.5.0:
+jszip@^3.5.0, jszip@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/jszip/-/jszip-3.7.0.tgz#9b8b995a4e7c9024653ce743e902076a82fdf4e6"
   integrity sha512-Y2OlFIzrDOPWUnpU0LORIcDn2xN7rC9yKffFM/7pGhQuhO+SUhfm2trkJ/S5amjFvem0Y+1EALz/MEPkvHXVNw==

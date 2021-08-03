@@ -2,13 +2,12 @@ import 'react-responsive-modal/styles.css'
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { saveAs } from 'file-saver'
 import { Modal } from 'react-responsive-modal'
 import styles from '../../styles/DownloadModal.module.css'
 import { cdn } from '../../utils/url'
 import RightArrow from '../icons/RightArrow'
 import LeftArrow from '../icons/LeftArrow'
-import { saveMultipleFiles } from '../../utils/files'
+import { saveFile, saveMultipleFiles } from '../../utils/files'
 
 interface DownloadModalProps {
   posts: any[]
@@ -43,7 +42,7 @@ const DownloadModal = ({
 
     try {
       if (!isCarousel) {
-        saveAs(cdn(urls[0]))
+        await saveFile(urls[0])
       } else {
         await saveMultipleFiles(urls, username)
       }

@@ -7,15 +7,24 @@ export const saveMultipleFiles = (urls: string[], archiveName: string = 'archive
   const zip = new JSZip()
 
   urls.forEach((url) => {
-    const { pathname } = new URL(url)
-    const fileName = pathname.split('/').pop() as string
+    const fileName = getFilenameFromUrl(url)
     zip.file(
       fileName,
-      axios.get(cdn(url)).then((response) => response.data),
+      fetch(cdn(url)).then((response) => response.blob()),
     )
   })
 
   return zip.generateAsync({ type: 'blob' }).then((blob) => {
     saveAs(blob, `${archiveName}.zip`)
   })
+}
+
+export const saveFile = (url: string) => {
+  const fileName = getFilenameFromUrl(url)
+  saveAs(cdn(url), fileName)
+}
+
+export const getFilenameFromUrl = (url: string) => {
+  const { pathname } = new URL(url)
+  return pathname.split('/').pop() as string
 }

@@ -142,13 +142,15 @@ const Home = () => {
           </b>
         </p>
       </footer>
-      <DownloadModal
-        open={downloadModalOpen}
-        onClose={closeDownloadModal}
-        username={data.username}
-        profileUrl={data.profile_pic_url}
-        posts={data.posts}
-      />
+      {data.posts && (
+        <DownloadModal
+          open={downloadModalOpen}
+          onClose={closeDownloadModal}
+          username={data.username}
+          profileUrl={data.profile_pic_url}
+          posts={data.posts}
+        />
+      )}
       <PrivateAccountModal
         open={privateAccountModalOpen}
         onClose={() => setPrivateAccountModalOpen(false)}

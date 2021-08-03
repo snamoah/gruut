@@ -7,7 +7,7 @@
   border-radius: 5px;
   box-shadow: none;
   padding: 0;
-  height: 500px;
+  min-height: 500px;
 }
 
 .modal > div {
@@ -20,7 +20,53 @@
 
 .preview {
   flex: 6;
+  position: relative;
   background-color: rgba(17, 138, 178, 0.05);
+  border-right: 1px solid rgba(17, 138, 178, 0.05);
+}
+
+.imagePreview {
+  height: 500px;
+}
+
+.leftControl,
+.rightControl {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.leftControl > div,
+.rightControl > div {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}
+
+.leftControl {
+  left: 0;
+}
+
+.rightControl {
+  right: 0;
+}
+
+.leftControl:hover,
+.rightControl:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.preview video {
+  display: block;
+  width: 100%;
 }
 
 .action {
@@ -41,8 +87,6 @@
 .action header img {
   border-radius: 50%;
   border: none;
-  width: 50px;
-  height: 50px;
 }
 
 .action header span {

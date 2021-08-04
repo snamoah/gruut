@@ -19,7 +19,6 @@ const Home = () => {
     setDownloadModalOpen(false)
   }
   const onSubmit = async (url: string) => {
-    console.log('===> url submitted', url)
     setSubmitting(true)
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
@@ -27,8 +26,6 @@ const Home = () => {
         body: JSON.stringify({ url }),
       })
       const { data, error } = await response.json()
-
-      console.log('===> data', data)
 
       if (error) {
         throw new Error(error)
@@ -40,8 +37,6 @@ const Home = () => {
       } else {
         setDownloadModalOpen(true)
       }
-    } catch (error) {
-      console.log('===>', error.message)
     } finally {
       setSubmitting(false)
     }

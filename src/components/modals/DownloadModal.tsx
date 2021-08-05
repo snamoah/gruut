@@ -1,6 +1,6 @@
 import 'react-responsive-modal/styles.css'
 
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import Image from 'next/image'
 import { Modal } from 'react-responsive-modal'
 import styles from '../../styles/DownloadModal.module.css'
@@ -36,9 +36,11 @@ const DownloadModal = ({
   const onNext = () => setSlideIndex(slideIndex + 1)
   const onPrevious = () => setSlideIndex(slideIndex - 1)
 
-  const save = async () => {
-    const urls = posts.map((post) => (post.is_video ? post.video_url : post.display_url))
+  const save = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
     setLoading(true)
+    const urls = posts.map((post) => (post.is_video ? post.video_url : post.display_url))
 
     try {
       if (!isCarousel) {
@@ -108,7 +110,7 @@ const DownloadModal = ({
               disabled={loading}
               onClick={save}
             >
-              {!loading ? `Download${isCarousel && ' all'}` : 'Downloading...'}
+              {loading ? 'Downloading...' : `Download${isCarousel ? ' all' : ''}`}
             </button>
           </div>
         </section>

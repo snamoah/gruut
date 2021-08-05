@@ -103,8 +103,12 @@ const DownloadModal = ({
             <span>@{username}</span>
           </header>
           <div>
-            <button disabled={loading} onClick={save}>
-              Download{isCarousel && ' all'}
+            <button
+              className={loading ? styles.disabled : ''}
+              disabled={loading}
+              onClick={save}
+            >
+              {!loading ? `Download${isCarousel && ' all'}` : 'Downloading...'}
             </button>
           </div>
         </section>

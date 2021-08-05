@@ -3,18 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"yarn client:dev\" \"yarn api:dev\"",
-    "build": "yarn client:build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx,.js",
-    "prepare": "husky install",
-    "client:build": "next build",
-    "client:start": "next start",
-    "client:dev": "next dev",
-    "api:dev": "./bin/sls-exec offline",
-    "api:deploy": "./bin/sls-exec deploy",
-    "test": "yarn test:api",
-    "test:api": "jest"
+    "prepare": "husky install"
   },
   "dependencies": {
     "cheerio": "0.22.0",
@@ -22,6 +15,7 @@
     "jszip": "^3.7.0",
     "lodash": "^4.17.21",
     "next": "11.0.1",
+    "next-seo": "^4.26.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-responsive-modal": "^6.1.0",

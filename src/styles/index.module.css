@@ -115,3 +115,26 @@
   justify-content: flex-end;
   margin-bottom: 2em;
 }
+
+@media (max-width: 768px) {
+  .aboveTheFold aside {
+    width: 100%;
+    margin-top: 2em;
+  }
+
+  .aboveTheFold figure {
+    display: none;
+  }
+
+  .inputBox {
+    padding: 0;
+  }
+
+  .benefits > div {
+    flex-direction: column;
+  }
+
+  .howItWorks figure {
+    display: none;
+  }
+}

@@ -82,14 +82,16 @@ const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
         </div>
         <div className={styles.postType}>
           {postTypeName || error} <figure>{renderCheck()}</figure>
-          {postTypeName && error && '   Not supported. '}
-          {postTypeName && error && (
-            <span className={styles.link}>
-              <Link href="/faq#stories-highlights-not-supported">
-                <a>Learn why</a>
-              </Link>
-            </span>
-          )}
+          <span>
+            {postTypeName && error && '   Not supported. '}
+            {postTypeName && error && (
+              <span className={styles.link}>
+                <Link href="/faq#stories-highlights-not-supported">
+                  <a>Learn why</a>
+                </Link>
+              </span>
+            )}
+          </span>
         </div>
       </form>
       {!error && (

@@ -24,6 +24,11 @@
   margin-bottom: 0;
 }
 
+.postType > span {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
 .form span {
   display: inline-block;
   vertical-align: middle;

@@ -20,13 +20,13 @@ const Layout = ({ children }: LayoutProps) => (
       <main>{children}</main>
     </div>
     <footer className={styles.footer}>
-      <ul>
+      {/* <ul>
         <li>
           <Link href="/faq">
             <a>FAQ</a>
           </Link>
         </li>
-      </ul>
+      </ul> */}
       <p className={styles.copyright}>
         Built with{' '}
         <span role="img" aria-label="Red Heart">

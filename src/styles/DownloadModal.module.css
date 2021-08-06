@@ -120,4 +120,8 @@
   .modal {
     width: 80%;
   }
+
+  .imagePreview {
+    height: 200px;
+  }
 }

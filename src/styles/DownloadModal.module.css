@@ -111,3 +111,13 @@
   background-color: rgba(0, 0, 0, 0.5);
   cursor: default;
 }
+
+@media (max-width: 768px) {
+  .preview {
+    display: none;
+  }
+
+  .modal {
+    width: 80%;
+  }
+}

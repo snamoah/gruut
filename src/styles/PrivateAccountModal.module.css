@@ -25,7 +25,20 @@
 }
 
 .modal header {
+  display: flex;
   margin-top: 2em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal header img {
+  border-radius: 50%;
+}
+
+.modal header span {
+  margin-left: 0.5em;
+  text-overflow: clip;
 }
 
 .modal p {
@@ -48,4 +61,35 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 80%;
+  }
+
+  .modal > div {
+    position: relative;
+    width: 100%;
+    padding: 2em;
+  }
+
+  .modal header {
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+
+  .modal figure {
+    display: none;
+  }
+
+  .modal p {
+    margin-top: 2em;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .modal span.red {
+    display: block;
+  }
 }

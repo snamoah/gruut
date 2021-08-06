@@ -1,5 +1,7 @@
+import Image from 'next/image'
 import Modal from 'react-responsive-modal'
 import styles from '../../styles/PrivateAccountModal.module.css'
+import { cdn } from '../../utils/url'
 import SadFace from '../illustrations/SaveFace'
 
 interface Props {
@@ -25,7 +27,13 @@ const PrivateAccountModal = ({ username, profileUrl, open, onClose }: Props) => 
           <SadFace />
         </figure>
         <header>
-          {/* <Image src={profileUrl as any} layout="fill" /> */}
+          <Image
+            unoptimized={true}
+            src={cdn(profileUrl)}
+            layout="fixed"
+            width={40}
+            height={40}
+          />
           <span>@{username}</span>
         </header>
         <p>

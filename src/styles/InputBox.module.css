@@ -82,3 +82,8 @@
 .tip b {
   margin: 0 0.4em;
 }
+
+.link {
+  color: #ef476f;
+  text-decoration: underline;
+}

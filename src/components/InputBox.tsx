@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import { debounce } from 'lodash'
 import { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import styles from '../styles/InputBox.module.css'
 import Verified from '../components/icons/Verified'
 import { cleanUrl, verifyUrlType } from '../utils/url'
-import { PostMeta } from '../utils/constants'
+import { PostMeta, SUPPORTED_POST_TYPES } from '../utils/constants'
 import CrossCircle from './icons/CrossCircle'
 import Loader from './icons/Loader'
 
@@ -45,9 +46,11 @@ const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
   const checkLink = debounce((url: string) => {
     try {
       const urlType = verifyUrlType(url)
-      setPostTypeName(PostMeta[urlType].name)
+      const { name } = PostMeta[urlType]
+      setPostTypeName(name)
       setFullUrl(url)
       setValue(cleanUrl(url))
+      setError(!SUPPORTED_POST_TYPES.includes(urlType) ? `${name} not supported` : '')
     } catch (err) {
       setError(err.message)
     }
@@ -79,6 +82,14 @@ const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
         </div>
         <div className={styles.postType}>
           {postTypeName || error} <figure>{renderCheck()}</figure>
+          {postTypeName && error && '   Not supported. '}
+          {postTypeName && error && (
+            <span className={styles.link}>
+              <Link href="/faq#stories-highlights-not-supported">
+                <a>Learn why</a>
+              </Link>
+            </span>
+          )}
         </div>
       </form>
       {!error && (

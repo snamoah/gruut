@@ -1,0 +1,24 @@
+.container {
+  padding: 0 10%;
+}
+
+.header {
+  margin-top: 2em;
+}
+
+.footer {
+  margin-top: 10em;
+  background-color: #000;
+  min-height: 250px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  text-align: center;
+  justify-content: flex-end;
+  margin-bottom: 2em;
+}

@@ -1,0 +1,14 @@
+.title {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.section {
+  margin-bottom: 3em;
+}
+
+.section header {
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  font-size: 1.2em;
+}

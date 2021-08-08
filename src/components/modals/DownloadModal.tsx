@@ -37,23 +37,24 @@ const DownloadModal = ({
   const onNext = () => setSlideIndex(slideIndex + 1)
   const onPrevious = () => setSlideIndex(slideIndex - 1)
 
-  const save = async (e: MouseEvent<HTMLButtonElement>) => {
+  const save = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
     setLoading(true)
     const urls = posts.map((post) => (post.is_video ? post.video_url : post.display_url))
-
-    try {
-      if (!isCarousel) {
-        await saveFile(urls[0])
-        trackEvent({ action: 'download' })
-      } else {
-        await saveMultipleFiles(urls, username)
-        trackEvent({ action: 'downloadMultiple' })
+    setTimeout(async () => {
+      try {
+        if (!isCarousel) {
+          await saveFile(urls[0])
+          trackEvent({ action: 'download' })
+        } else {
+          await saveMultipleFiles(urls, username)
+          trackEvent({ action: 'downloadMultiple' })
+        }
+      } finally {
+        setLoading(false)
       }
-    } finally {
-      setLoading(false)
-    }
+    }, 0)
   }
 
   return (

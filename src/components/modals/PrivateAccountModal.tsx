@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Modal from 'react-responsive-modal'
 import styles from '../../styles/PrivateAccountModal.module.css'
+import { trackEvent } from '../../utils/analytics'
 import { cdn } from '../../utils/url'
 import SadFace from '../illustrations/SaveFace'
 
@@ -11,6 +12,11 @@ interface Props {
   onClose(): void
 }
 const PrivateAccountModal = ({ username, profileUrl, open, onClose }: Props) => {
+  const onClickTryAnotherLink = () => {
+    onClose()
+    trackEvent({ action: 'tryAnotherLink' })
+  }
+
   return (
     <Modal
       open={open}
@@ -39,7 +45,7 @@ const PrivateAccountModal = ({ username, profileUrl, open, onClose }: Props) => 
         <p>
           Unable to download. <span className={styles.red}>Account is private.</span>
         </p>
-        <button onClick={onClose}>Try another link</button>
+        <button onClick={onClickTryAnotherLink}>Try another link</button>
       </div>
     </Modal>
   )

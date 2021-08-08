@@ -10,7 +10,7 @@ interface Event {
   action: string
   params?: Record<string, any>
 }
-// log specific events happening.
+
 export const trackEvent = ({ action, params }: Event) => {
   ;(window as any).gtag('event', action, params)
 }

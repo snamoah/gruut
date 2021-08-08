@@ -7,6 +7,7 @@ import { cleanUrl, verifyUrlType } from '../utils/url'
 import { PostMeta, SUPPORTED_POST_TYPES } from '../utils/constants'
 import CrossCircle from './icons/CrossCircle'
 import Loader from './icons/Loader'
+import { trackEvent } from '../utils/analytics'
 
 interface InputBoxProps {
   loading?: boolean
@@ -40,6 +41,7 @@ const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
     event.preventDefault()
     if (!error) {
       onSubmit(fullUrl)
+      trackEvent({ action: 'fetchData' })
     }
   }
 

@@ -8,6 +8,7 @@ import { cdn } from '../../utils/url'
 import RightArrow from '../icons/RightArrow'
 import LeftArrow from '../icons/LeftArrow'
 import { saveFile, saveMultipleFiles } from '../../utils/files'
+import { trackEvent } from '../../utils/analytics'
 
 interface DownloadModalProps {
   posts: any[]
@@ -45,8 +46,10 @@ const DownloadModal = ({
     try {
       if (!isCarousel) {
         await saveFile(urls[0])
+        trackEvent({ action: 'download' })
       } else {
         await saveMultipleFiles(urls, username)
+        trackEvent({ action: 'downloadMultiple' })
       }
     } finally {
       setLoading(false)

@@ -1,9 +1,22 @@
+import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+import { trackPageView } from '../utils/analytics'
 
 import '../styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', trackPageView)
+
+    return () => {
+      router.events.off('routeChangeComplete', trackPageView)
+    }
+  }, [router.events])
+
   return (
     <>
       <DefaultSeo

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Modal from 'react-responsive-modal'
 import styles from '../../styles/PrivateAccountModal.module.css'
-import { trackEvent } from '../../utils/analytics'
+import { trackEvent } from '../../config/analytics'
 import { cdn } from '../../utils/url'
 import SadFace from '../illustrations/SaveFace'
 

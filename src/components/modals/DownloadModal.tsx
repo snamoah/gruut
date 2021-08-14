@@ -8,7 +8,7 @@ import { cdn } from '../../utils/url'
 import RightArrow from '../icons/RightArrow'
 import LeftArrow from '../icons/LeftArrow'
 import { saveFile, saveMultipleFiles } from '../../utils/files'
-import { trackEvent } from '../../utils/analytics'
+import { trackEvent } from '../../config/analytics'
 
 interface DownloadModalProps {
   posts: any[]

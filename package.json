@@ -10,6 +10,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@sentry/react": "^6.11.0",
+    "@sentry/tracing": "^6.11.0",
     "cheerio": "0.22.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.7.0",

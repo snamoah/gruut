@@ -5,6 +5,9 @@ import { useRouter } from 'next/router'
 import { trackPageView } from '../config/analytics'
 
 import '../styles/globals.css'
+import { initSentry } from '../config/sentry'
+
+initSentry()
 
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()

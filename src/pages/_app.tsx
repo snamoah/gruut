@@ -2,9 +2,12 @@ import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { trackPageView } from '../utils/analytics'
+import { trackPageView } from '../config/analytics'
 
 import '../styles/globals.css'
+import { initSentry } from '../config/sentry'
+
+initSentry()
 
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()

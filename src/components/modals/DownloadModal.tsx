@@ -41,7 +41,7 @@ const DownloadModal = ({
     e.preventDefault()
 
     setLoading(true)
-    const urls = posts.map((post) => (post.is_video ? post.video_url : post.display_url))
+    const urls = posts.map((post) => (post.isVideo ? post.videoUrl : post.displayUrl))
     setTimeout(async () => {
       try {
         if (!isCarousel) {
@@ -63,7 +63,7 @@ const DownloadModal = ({
       onClose={onClose}
       showCloseIcon={false}
       classNames={{
-        modal: `${styles.modal} ${!post.is_video ? styles.imagePreview : ''}`,
+        modal: `${styles.modal} ${!post.isVideo ? styles.imagePreview : ''}`,
         overlay: styles.overlay,
       }}
       center
@@ -72,11 +72,11 @@ const DownloadModal = ({
         <section className={styles.preview}>
           <div>
             {post.is_video ? (
-              <video controls src={cdn(post.video_url)} />
+              <video controls src={cdn(post.videoUrl)} />
             ) : (
               <Image
                 unoptimized={true}
-                src={cdn(post.display_url) as any}
+                src={cdn(post.displayUrl) as any}
                 objectFit="contain"
                 layout="fill"
               />

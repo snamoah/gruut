@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState } from 'react'
 import Layout from '../components/Layout'
 import InputBox from '../components/InputBox'
@@ -21,22 +22,16 @@ const Home = () => {
   const onSubmit = async (url: string) => {
     setSubmitting(true)
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
-        method: 'POST',
-        body: JSON.stringify({ url }),
-      })
-      const { data, error } = await response.json()
-
-      if (error) {
-        throw new Error(error)
-      }
+      const { data } = await axios.post(process.env.NEXT_PUBLIC_API_URL!, { url })
 
       setData(data)
-      if (data.is_private) {
+      if (data.isPrivate) {
         setPrivateAccountModalOpen(true)
       } else {
         setDownloadModalOpen(true)
       }
+    } catch (error) {
+      console.log('===> error', error)
     } finally {
       setSubmitting(false)
     }
@@ -115,7 +110,7 @@ const Home = () => {
           open={downloadModalOpen}
           onClose={closeDownloadModal}
           username={data.username}
-          profileUrl={data.profile_pic_url}
+          profileUrl={data.profilePicUrl}
           posts={data.posts}
         />
       )}
@@ -123,7 +118,7 @@ const Home = () => {
         open={privateAccountModalOpen}
         onClose={() => setPrivateAccountModalOpen(false)}
         username={data.username}
-        profileUrl={data.profile_pic_url}
+        profileUrl={data.profilePicUrl}
       />
     </Layout>
   )

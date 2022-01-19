@@ -71,7 +71,7 @@ const DownloadModal = ({
       <div>
         <section className={styles.preview}>
           <div>
-            {post.is_video ? (
+            {post.isVideo ? (
               <video controls src={cdn(post.videoUrl)} />
             ) : (
               <Image
@@ -79,6 +79,7 @@ const DownloadModal = ({
                 src={cdn(post.displayUrl) as any}
                 objectFit="contain"
                 layout="fill"
+                alt={post.accessibilityCaption}
               />
             )}
           </div>
@@ -105,6 +106,7 @@ const DownloadModal = ({
               layout="fixed"
               width={40}
               height={40}
+              alt={`Profile photo of ${username}`}
             />
             <span>@{username}</span>
           </header>

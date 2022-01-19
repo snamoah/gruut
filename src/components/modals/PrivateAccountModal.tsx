@@ -39,6 +39,7 @@ const PrivateAccountModal = ({ username, profileUrl, open, onClose }: Props) => 
             layout="fixed"
             width={40}
             height={40}
+            alt={`Profile photo of ${username}`}
           />
           <span>@{username}</span>
         </header>

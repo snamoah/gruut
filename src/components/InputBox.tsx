@@ -53,7 +53,7 @@ const InputBox = ({ onSubmit, loading }: InputBoxProps) => {
       setFullUrl(url)
       setValue(cleanUrl(url))
       setError(!SUPPORTED_POST_TYPES.includes(urlType) ? `${name} not supported` : '')
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message)
     }
   }, 200)

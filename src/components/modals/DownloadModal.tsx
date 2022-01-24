@@ -76,7 +76,7 @@ const DownloadModal = ({
             ) : (
               <Image
                 unoptimized={true}
-                src={cdn(post.displayUrl) as any}
+                src={cdn(post.displayUrl)}
                 objectFit="contain"
                 layout="fill"
                 alt={post.accessibilityCaption}

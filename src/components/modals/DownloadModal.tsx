@@ -1,6 +1,7 @@
 import 'react-responsive-modal/styles.css'
 
 import { MouseEvent, useState } from 'react'
+import * as Sentry from '@sentry/react'
 import Image from 'next/image'
 import { Modal } from 'react-responsive-modal'
 import styles from '../../styles/DownloadModal.module.css'
@@ -51,6 +52,14 @@ const DownloadModal = ({
           await saveMultipleFiles(urls, username)
           trackEvent({ action: 'downloadMultiple' })
         }
+      } catch (error) {
+        Sentry.withScope((scope) => {
+          scope.setContext('additional_data', {
+            posts,
+          })
+
+          Sentry.captureException(error)
+        })
       } finally {
         setLoading(false)
       }

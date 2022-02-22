@@ -24,6 +24,7 @@ const Home = () => {
   const closeDownloadModal = () => {
     setDownloadModalOpen(false)
   }
+
   const onSubmit = async (url: string) => {
     setUrl(url)
     setSubmitting(true)
@@ -39,7 +40,7 @@ const Home = () => {
         trackEvent({ action: 'downloadModalOpen' })
       }
     } catch (error) {
-      setError(error as RequestError)
+      setError((error as any).response.data as RequestError)
     } finally {
       setSubmitting(false)
     }

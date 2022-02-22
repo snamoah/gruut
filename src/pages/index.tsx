@@ -10,11 +10,13 @@ import DownloadModal from '../components/modals/DownloadModal'
 import PrivateAccountModal from '../components/modals/PrivateAccountModal'
 import WomanWithPhone from '../components/illustrations/WomanWithMobile'
 import { ErrorBoundary } from '../components/ErrorBoundary'
+import ErrorModal, { RequestError } from '../components/modals/ErrorModal'
 
 const Home = () => {
   const [url, setUrl] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [downloadModalOpen, setDownloadModalOpen] = useState(false)
+  const [error, setError] = useState<RequestError | null | undefined>()
   const [privateAccountModalOpen, setPrivateAccountModalOpen] = useState(false)
   const [data, setData] = useState<Record<string, any>>({})
 
@@ -24,15 +26,20 @@ const Home = () => {
   const onSubmit = async (url: string) => {
     setUrl(url)
     setSubmitting(true)
-    const { data } = await axios.post(process.env.NEXT_PUBLIC_API_URL!, { url })
+    try {
+      const { data } = await axios.post(process.env.NEXT_PUBLIC_API_URL!, { url })
 
-    setData(data)
-    if (data.isPrivate) {
-      setPrivateAccountModalOpen(true)
-    } else {
-      setDownloadModalOpen(true)
+      setData(data)
+      if (data.isPrivate) {
+        setPrivateAccountModalOpen(true)
+      } else {
+        setDownloadModalOpen(true)
+      }
+    } catch (error) {
+      setError(error as RequestError)
+    } finally {
+      setSubmitting(false)
     }
-    setSubmitting(false)
   }
 
   return (
@@ -121,6 +128,13 @@ const Home = () => {
           username={data.username}
           profileUrl={data.profilePicUrl}
         />
+        {error && (
+          <ErrorModal
+            open={Boolean(error)}
+            onClose={() => setError(null)}
+            error={error}
+          />
+        )}
       </Layout>
     </ErrorBoundary>
   )

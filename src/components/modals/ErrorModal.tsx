@@ -19,7 +19,7 @@ interface Props {
 const ErrorModal = ({ error, open, onClose }: Props) => {
   const onClickTryAnotherLink = () => {
     onClose()
-    trackEvent({ action: 'tryAnotherLink' })
+    trackEvent({ action: 'tryAnotherLinkFromError' })
   }
 
   return (

@@ -11,6 +11,7 @@ import PrivateAccountModal from '../components/modals/PrivateAccountModal'
 import WomanWithPhone from '../components/illustrations/WomanWithMobile'
 import { ErrorBoundary } from '../components/ErrorBoundary'
 import ErrorModal, { RequestError } from '../components/modals/ErrorModal'
+import { trackEvent } from '../config/analytics'
 
 const Home = () => {
   const [url, setUrl] = useState('')
@@ -32,8 +33,10 @@ const Home = () => {
       setData(data)
       if (data.isPrivate) {
         setPrivateAccountModalOpen(true)
+        trackEvent({ action: 'privateAccountModalOpen' })
       } else {
         setDownloadModalOpen(true)
+        trackEvent({ action: 'downloadModalOpen' })
       }
     } catch (error) {
       setError(error as RequestError)

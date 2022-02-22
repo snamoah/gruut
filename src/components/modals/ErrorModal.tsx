@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import Modal from 'react-responsive-modal'
 import styles from '../../styles/PrivateAccountModal.module.css'
 import { trackEvent } from '../../config/analytics'
-import { cdn } from '../../utils/url'
 import SadFace from '../illustrations/SaveFace'
 
 export interface RequestError {
@@ -22,6 +20,12 @@ const ErrorModal = ({ error, open, onClose }: Props) => {
     trackEvent({ action: 'tryAnotherLinkFromError' })
   }
 
+  const isServerError = error && error.statusCode === 500
+
+  const errorMessage = isServerError
+    ? 'Sorry, Something went wrong. Try again later'
+    : error.message
+
   return (
     <Modal
       open={open}
@@ -37,8 +41,10 @@ const ErrorModal = ({ error, open, onClose }: Props) => {
         <figure>
           <SadFace />
         </figure>
-        <p>{error.message}</p>
-        <button onClick={onClickTryAnotherLink}>Try another link</button>
+        <p>{errorMessage}</p>
+        {!isServerError && (
+          <button onClick={onClickTryAnotherLink}>Try another link</button>
+        )}
       </div>
     </Modal>
   )
